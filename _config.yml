@@ -1,0 +1,10 @@
+baseurl: ''
+exclude: [README.md, vendor, node_modules]
+permalink: pretty
+title: 'Jekyll and Tailwind CSS'
+
+#theme: jekyll-theme-cayman
+
+plugins:
+  - jekyll-redirect-from
+  - jekyll-postcss

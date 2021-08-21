@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>{% if page.title %}{{page.title}}{% else %}{{ site.title | escape }}{% endif %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <link href="{{ '/build/tailwind.css' | relative_url }}" rel="stylesheet">
+</head>
+<body class="bg-gray-400">
+  <div id="wrapper" class="wrapper">
+    {{content}}
+  </div>
+</body>
+</html>
