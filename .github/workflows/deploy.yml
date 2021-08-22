@@ -43,9 +43,10 @@ jobs:
       - run: git reset --hard
       - run: rm -rf assets
 #      - run: git remote -v
-#      - run: git fetch
 #      - run: git branch -avv
-      - run: git switch gh-pages
+      - run: |
+          git fetch
+          git switch gh-pages
 #      - run: ls -la
 #      - run: ls -la _site
       - run: cp -r _site/* ./
