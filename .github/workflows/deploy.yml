@@ -18,7 +18,7 @@ jobs:
       - run: ls -la
       - run: ls -la ..
       - run: ls -la .git
-      - run: ls -la ${{ github.workspace }}
+      - run: echo ${{ github.workspace }}
 
       - run: npm install
 
@@ -36,6 +36,8 @@ jobs:
             /bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build --future"
 
       - run: git status
+      - run: ls -la
+      - run: ls -la _site
 
 #      - name: Upload to GitHub Pages
 #        uses: JamesIves/github-pages-deploy-action@releases/v3
