@@ -33,7 +33,7 @@ build-jekyll:
 	docker run \
 		-v "$(shell pwd)":/srv/jekyll \
 		jekyll/builder:latest \
-		/bin/bash -c "jekyll build"  # --future
+		/bin/bash -c "gem install github-pages && jekyll build"  # --future
 
 
 build: build-tailwind build-jekyll
