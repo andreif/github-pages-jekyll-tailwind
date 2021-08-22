@@ -46,6 +46,7 @@ jobs:
       - run: git reset --hard
       - run: rm -rf assets
       - run: git remote -v
+      - run: git branch -avv
       - run: git checkout -t origin/gh-pages
       - run: ls -la
       - run: ls -la _site
