@@ -43,6 +43,12 @@ jobs:
       - run: git status
       - run: ls -la
       - run: ls -la _site
+      - run: git reset --hard
+      - run: git checkout -b origin/gh-pages
+      - run: ls -la
+      - run: ls -la _site
+      - run: mv _site/* ./
+      - run: git status
 
 #      - name: Upload to GitHub Pages
 #        uses: JamesIves/github-pages-deploy-action@releases/v3
