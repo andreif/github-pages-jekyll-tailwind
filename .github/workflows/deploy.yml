@@ -20,7 +20,7 @@ jobs:
 
       - run: NODE_ENV=production npx tailwindcss -o assets/css/styles.css --minify
 
-      - run: git -v
+      - run: git --version
 
       - name: Build the site in the jekyll/builder container
         run: |
@@ -30,9 +30,9 @@ jobs:
             jekyll/builder:latest \
             /bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build --future"
 
-      - name: Upload to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@releases/v3
-        with:
-            ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-            BRANCH: gh-pages
-#            FOLDER: site
+#      - name: Upload to GitHub Pages
+#        uses: JamesIves/github-pages-deploy-action@releases/v3
+#        with:
+#            ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+#            BRANCH: gh-pages
+##            FOLDER: site
