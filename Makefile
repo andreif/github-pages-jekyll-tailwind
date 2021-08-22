@@ -26,6 +26,10 @@ build-tailwind: node_modules
 
 
 build-jekyll:
+	mkdir -p .jekyll-cache
+	mkdir -p _site
+	chmod 777 .jekyll-cache
+	chmod 777 _site
 	docker run \
 		-v "$(shell pwd)":/srv/jekyll \
 		jekyll/builder:latest \
