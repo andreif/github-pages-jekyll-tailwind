@@ -9,7 +9,6 @@ exclude:
   - '*.config.js'
   - package*.json
   - .idea
-  - assets/css/tailwind.css
   - Gemfile*
 
 plugins:
