@@ -14,26 +14,31 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
       - run: pwd
       - run: ls -la
       - run: ls -la ..
       - run: ls -la .git
       - run: echo ${{ github.workspace }}
-
-      - run: npm install
-
-      - run: NODE_ENV=production npx tailwindcss -o assets/css/styles.css --minify
-
       - run: git --version
       - run: docker --version
 
-      - name: Build the site in the jekyll/builder container
-        run: |
-          docker run \
-            -v ${{ github.workspace }}:/srv/jekyll \
-            -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
-            jekyll/builder:latest \
-            /bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build --future"
+      - run: npm install
+
+      - run: make build-tailwind
+
+      - run: make build-jekyll
 
       - run: git status
       - run: ls -la

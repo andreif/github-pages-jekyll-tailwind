@@ -5,7 +5,7 @@ module.exports = {
         // './_posts/*.md',
         '*.html',
     ],
-    // mode: 'jit', // doesn't work with jekyll-postcss plugin https://github.com/tailwindlabs/tailwindcss-jit/issues/41
+    mode: 'jit',
     darkMode: false, // or 'media' or 'class'
     theme: {
         extend: {},
@@ -16,4 +16,4 @@ module.exports = {
     plugins: [
         require('@tailwindcss/typography'),
     ],
-}
+};

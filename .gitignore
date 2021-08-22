@@ -2,3 +2,4 @@ _site
 bundle
 *.lock
 package-lock.json
+.jekyll-cache

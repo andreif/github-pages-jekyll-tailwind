@@ -4,12 +4,33 @@ clean:
 	rm -rf vendor
 	rm *.lock package-lock.json
 
-setup:
+
+node_modules:
 	npm install
+
+
+setup: node_modules
 	bundle
+
 
 watch:
 	npx tailwindcss -o assets/css/styles.css --watch
 
+
 server:
 	bundle exec jekyll serve
+
+
+build-tailwind: node_modules
+	NODE_ENV=production npx tailwindcss -o assets/css/styles.css --minify
+
+
+build-jekyll:
+	docker run -ti \
+		-v "$(shell pwd)":/srv/jekyll \
+		jekyll/builder:latest \
+		/bin/bash -c "jekyll build"
+#		/bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build --future"
+
+
+build: build-tailwind build-jekyll

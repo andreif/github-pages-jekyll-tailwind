@@ -5,6 +5,7 @@ repository: andreif/github-pages-jekyll-tailwind
 
 exclude:
   - README.md
+  - Makefile
   - vendor
   - node_modules
   - '*.config.js'
@@ -15,7 +16,6 @@ exclude:
 
 plugins:
   - jekyll-redirect-from
-  - jekyll-postcss
 
 defaults:
   - scope:
