@@ -18,6 +18,7 @@ jobs:
       - run: ls -la
       - run: ls -la ..
       - run: ls -la .git
+      - run: ls -la ${{ github.workspace }}
 
       - run: npm install
 
