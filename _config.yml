@@ -13,9 +13,10 @@ exclude:
   - .idea
   - Gemfile*
   - .github
+  - assets/css/tailwind.css
 
-plugins:
-  - jekyll-redirect-from
+#plugins:
+#  - jekyll-redirect-from
 
 defaults:
   - scope:

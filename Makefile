@@ -29,7 +29,7 @@ build-jekyll:
 	docker run \
 		-v "$(shell pwd)":/srv/jekyll \
 		jekyll/builder:latest \
-		/bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build"  # --future
+		/bin/bash -c "jekyll build"  # --future
 
 
 build: build-tailwind build-jekyll
