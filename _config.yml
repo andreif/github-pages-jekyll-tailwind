@@ -1,6 +1,5 @@
 title: 'Jekyll and Tailwind CSS'
 theme:
-baseurl: '/github-pages-jekyll-tailwind'
 permalink: pretty
 
 exclude:
