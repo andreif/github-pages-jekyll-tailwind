@@ -55,7 +55,9 @@ jobs:
       - run: git status
       - run: git add .
       - run: git remote set-url origin git@github.com:andreif/github-pages-jekyll-tailwind.git
-      - run: ls ~/.ssh
+      - run: mkdir -p ~/.ssh
+      - run: echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/id_ed25519
+      - run: chmod 600 ~/.ssh/id_ed25519
       - run: |
           git config --global user.name 'Github Actions'
           git config --global user.email 'github.actions@users.noreply.github.com'
