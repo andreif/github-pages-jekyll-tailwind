@@ -1,10 +1,9 @@
 {
   "private": true,
   "devDependencies": {
-    "@tailwindcss/typography": "0.x.x",
     "autoprefixer": "10.x.x",
     "postcss": "8.x.x",
-    "postcss-import": "^14",
-    "tailwindcss": "2.x.x"
+    "tailwindcss": "2.x.x",
+    "@tailwindcss/typography": "0.x.x"
   }
 }
