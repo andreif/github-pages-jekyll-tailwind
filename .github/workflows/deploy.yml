@@ -53,6 +53,12 @@ jobs:
       - run: ls -la _site
       - run: cp -r _site/* ./
       - run: git status
+      - run: git add .
+      - run: |
+          git config --global user.name 'Github Actions'
+          git config --global user.email 'github.actions@users.noreply.github.com'
+          git commit -am "Deploy"
+          git push
 
 #      - name: Upload to GitHub Pages
 #        uses: JamesIves/github-pages-deploy-action@releases/v3
