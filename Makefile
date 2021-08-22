@@ -26,7 +26,7 @@ build-tailwind: node_modules
 
 
 build-jekyll:
-	docker run -ti \
+	docker run \
 		-v "$(shell pwd)":/srv/jekyll \
 		jekyll/builder:latest \
 		/bin/bash -c "jekyll build"
