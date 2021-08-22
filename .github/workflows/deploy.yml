@@ -34,6 +34,8 @@ jobs:
             jekyll/builder:latest \
             /bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build --future"
 
+      - run: git status
+
 #      - name: Upload to GitHub Pages
 #        uses: JamesIves/github-pages-deploy-action@releases/v3
 #        with:
