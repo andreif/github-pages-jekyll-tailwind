@@ -1,15 +1,17 @@
+title: 'Jekyll and Tailwind CSS'
+theme:
 baseurl: ''
+permalink: pretty
+
 exclude:
   - README.md
   - vendor
   - node_modules
   - '*.config.js'
   - package*.json
-  - assets
-permalink: pretty
-title: 'Jekyll and Tailwind CSS'
-
-#theme: jekyll-theme-cayman
+  - .idea
+  - assets/css/tailwind.css
+  - Gemfile*
 
 plugins:
   - jekyll-redirect-from
