@@ -27,38 +27,35 @@ jobs:
             ${{ runner.os }}-
 
       - run: pwd
-      - run: ls -la
-      - run: ls -la ..
-      - run: ls -la .git
-      - run: echo ${{ github.workspace }}
-      - run: git --version
-      - run: docker --version
-
-      - run: npm install
+#      - run: ls -la
+#      - run: ls -la ..
+#      - run: ls -la .git
+#      - run: echo ${{ github.workspace }}
+#      - run: git --version
+#      - run: docker --version
 
       - run: make build-tailwind
-
       - run: make build-jekyll
 
-      - run: git status
-      - run: ls -la
-      - run: ls -la _site
+#      - run: git status
+#      - run: ls -la
+#      - run: ls -la _site
       - run: git reset --hard
       - run: rm -rf assets
-      - run: git remote -v
-      - run: git fetch
-      - run: git branch -avv
+#      - run: git remote -v
+#      - run: git fetch
+#      - run: git branch -avv
       - run: git switch gh-pages
-      - run: ls -la
-      - run: ls -la _site
+#      - run: ls -la
+#      - run: ls -la _site
       - run: cp -r _site/* ./
-      - run: git status
-      - run: git add .
-      - run: git remote set-url origin git@github.com:andreif/github-pages-jekyll-tailwind.git
-      - run: mkdir -p ~/.ssh
-      - run: echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/id_ed25519
-      - run: chmod 600 ~/.ssh/id_ed25519
+#      - run: git status
       - run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+      - run: |
+          git remote set-url origin git@github.com:andreif/github-pages-jekyll-tailwind.git
           git config --global user.name 'Github Actions'
           git config --global user.email 'github.actions@users.noreply.github.com'
           git commit -am "Deploy"
