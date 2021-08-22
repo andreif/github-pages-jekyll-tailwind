@@ -1,5 +1,11 @@
 baseurl: ''
-exclude: [README.md, vendor, node_modules]
+exclude:
+  - README.md
+  - vendor
+  - node_modules
+  - *.config.js
+  - package*.json
+  - assets
 permalink: pretty
 title: 'Jekyll and Tailwind CSS'
 
@@ -8,3 +14,9 @@ title: 'Jekyll and Tailwind CSS'
 plugins:
   - jekyll-redirect-from
   - jekyll-postcss
+
+defaults:
+  - scope:
+      path: ''
+    values:
+      layout: default
