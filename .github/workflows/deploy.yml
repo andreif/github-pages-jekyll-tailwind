@@ -18,7 +18,7 @@ jobs:
 
       - run: npm install
 
-      - run: npx tailwindcss -o assets/css/styles.css --watch
+      - run: NODE_ENV=production npx tailwindcss -o assets/css/styles.css --minify
 
       - run: git -v
 
