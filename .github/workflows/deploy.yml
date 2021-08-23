@@ -50,7 +50,9 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
 
-      - run: NODE_ENV=production npx tailwindcss -o assets/css/styles.css --minify
+      - run: |
+          npm install
+          NODE_ENV=production npx tailwindcss -o assets/css/styles.css --minify
 
       - run: |
           sudo gem install bundler --verbose
