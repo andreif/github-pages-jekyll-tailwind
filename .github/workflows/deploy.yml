@@ -40,7 +40,7 @@ jobs:
 
       - run: gem list
       - run: gem env
-      - run: gem install bundler
+      - run: sudo gem install bundler
       - run: make build-tailwind
       - run: make build-jekyll
       - run: |
