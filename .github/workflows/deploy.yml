@@ -26,31 +26,29 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
 
-      - run: pwd
-#      - run: ls -la
-#      - run: ls -la ..
-#      - run: ls -la .git
-#      - run: echo ${{ github.workspace }}
-#      - run: git --version
-#      - run: docker --version
+      - name: Cache ruby gems
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-ruby-gems
+        with:
+          path: vendor
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/Gemfile') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
 
       - run: make build-tailwind
       - run: make build-jekyll
-
-#      - run: git status
-#      - run: ls -la
-#      - run: ls -la _site
-      - run: git reset --hard
-      - run: rm -rf assets
-#      - run: git remote -v
-#      - run: git branch -avv
+      - run: |
+          git add .
+          git reset --hard
       - run: |
           git fetch
           git switch gh-pages
-#      - run: ls -la
-#      - run: ls -la _site
-      - run: cp -r _site/* ./
-#      - run: git status
+      - run: |
+          rm -rf *.html assets
+          cp -r _site/* ./
       - run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/id_ed25519

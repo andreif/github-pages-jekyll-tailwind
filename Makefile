@@ -26,6 +26,11 @@ build-tailwind: node_modules
 
 
 build-jekyll:
+	bundle
+	bundle exec jekyll build
+
+
+build-jekyll-docker:
 	mkdir -p .jekyll-cache
 	mkdir -p _site
 	chmod 777 .jekyll-cache
