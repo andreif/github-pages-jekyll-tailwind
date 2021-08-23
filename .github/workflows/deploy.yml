@@ -17,9 +17,11 @@ jobs:
       - name: Cache node modules
         uses: actions/cache@v2
         env:
-          cache-name: cache-node-modules
+#          cache-name: cache-node-modules
+          cache-name: cache-node_modules
         with:
-          path: ~/.npm
+#          path: ~/.npm
+          path: node_modules
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
@@ -38,5 +40,5 @@ jobs:
           git config --global user.name 'Github Actions'
           git config --global user.email 'github.actions@users.noreply.github.com'
           git add assets/css/styles.css
-          git commit -m "Styles"
+          git commit -m "Deploy"
           git push --force origin main:gh-pages
