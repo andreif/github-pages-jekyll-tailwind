@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [ main ]
 
+env:
+  CSS_OUTPUT: assets/css/styles.css
+  CSS_INPUT: assets/css/tailwind.css
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -17,10 +21,8 @@ jobs:
       - name: Cache node modules
         uses: actions/cache@v2
         env:
-#          cache-name: cache-node-modules
           cache-name: cache-node_modules
         with:
-#          path: ~/.npm
           path: node_modules
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
@@ -28,7 +30,7 @@ jobs:
 
       - run: |
           npm install
-          NODE_ENV=production npx tailwindcss -i assets/css/tailwind.css -o assets/css/styles.css --minify
+          NODE_ENV=production npx tailwindcss -i $CSS_INPUT -o $CSS_OUTPUT --minify
 
       - run: |
           mkdir -p ~/.ssh
@@ -36,9 +38,9 @@ jobs:
           chmod 600 ~/.ssh/id_ed25519
 
       - run: |
-          git remote set-url origin git@github.com:andreif/github-pages-jekyll-tailwind.git
+          git remote set-url origin git@github.com:${{ github.repository }}.git
           git config --global user.name 'Github Actions'
           git config --global user.email 'github.actions@users.noreply.github.com'
-          git add -f assets/css/styles.css
+          git add -f $CSS_OUTPUT
           git commit -m "Deploy"
           git push --force origin main:gh-pages
