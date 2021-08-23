@@ -51,23 +51,28 @@ jobs:
             ${{ runner.os }}-
 
       - run: NODE_ENV=production npx tailwindcss -o assets/css/styles.css --minify
+
       - run: |
           export GEM_HOME=~/.gem/ruby/2.7.0
           mkdir -p $GEM_HOME
-          gem install bundler
+          gem install bundler --verbose
           bundle exec jekyll build
+
       - run: |
           git add .
           git reset --hard
           git fetch
           git switch gh-pages
+
       - run: |
           rm -rf *.html assets
           cp -r _site/* ./
+
       - run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
+
       - run: |
           git remote set-url origin git@github.com:andreif/github-pages-jekyll-tailwind.git
           git config --global user.name 'Github Actions'
