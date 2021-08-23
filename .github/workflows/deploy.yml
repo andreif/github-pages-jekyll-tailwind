@@ -53,10 +53,8 @@ jobs:
       - run: NODE_ENV=production npx tailwindcss -o assets/css/styles.css --minify
 
       - run: |
-          export GEM_HOME=~/.gem/ruby/2.7.0
-          mkdir -p $GEM_HOME
-          gem install bundler
-          $GEM_HOME/bin/bundle exec $GEM_HOME/bin/jekyll build
+          sudo gem install bundler --verbose
+          bundle exec jekyll build
 
       - run: |
           git add .
