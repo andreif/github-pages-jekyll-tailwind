@@ -24,7 +24,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
 
-      - name: Cache ruby gems
+      - name: Cache bunled ruby gems
         uses: actions/cache@v2
         env:
           cache-name: cache-ruby-gems
@@ -34,7 +34,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
 
-      - name: Cache ruby gems 2
+      - name: Cache home ruby gems
         uses: actions/cache@v2
         env:
           cache-name: cache-ruby-gems-4
