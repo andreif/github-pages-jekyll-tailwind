@@ -33,9 +33,12 @@ jobs:
           NODE_ENV=production npx tailwindcss -i $CSS_INPUT -o $CSS_OUTPUT --minify
 
       - run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519
+          mkdir -p $(dirname $DEPLOY_KEY_PATH)
+          echo "${{ secrets.DEPLOY_KEY }}" > $DEPLOY_KEY_PATH
+          [ -s $DEPLOY_KEY_PATH ] && exit 1
+          chmod 600 $DEPLOY_KEY_PATH
+        env:
+          DEPLOY_KEY_PATH: ~/.ssh/id_ed25519
 
       - run: |
           git remote set-url origin git@github.com:${{ github.repository }}.git
