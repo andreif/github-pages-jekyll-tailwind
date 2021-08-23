@@ -24,46 +24,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
 
-      - name: Cache bunled ruby gems
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-ruby-gems
-        with:
-          path: vendor
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/Gemfile') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-
-      - name: Cache home ruby gems
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-ruby-gems-4
-        with:
-          path: ~/.gem/ruby/2.7.0
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/Gemfile') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-
       - run: |
           npm install
           NODE_ENV=production npx tailwindcss -o assets/css/styles.css --minify
-
-      - run: |
-          export GEM_HOME=~/.gem/ruby/2.7.0
-          mkdir -p $GEM_HOME
-          [ -f $GEM_HOME/bin/bundle ] || gem install bundler --verbose
-          $GEM_HOME/bin/bundle install
-          $GEM_HOME/bin/bundle exec jekyll build
-
-      - run: |
-          git add .
-          git reset --hard
-          git fetch
-          git switch gh-pages
-
-      - run: |
-          rm -rf *.html assets
-          cp -r _site/* ./
 
       - run: |
           mkdir -p ~/.ssh
@@ -74,5 +37,6 @@ jobs:
           git remote set-url origin git@github.com:andreif/github-pages-jekyll-tailwind.git
           git config --global user.name 'Github Actions'
           git config --global user.email 'github.actions@users.noreply.github.com'
-          git commit -am "Deploy"
-          git push
+          git add assets/css/styles.css
+          git commit -m "Styles"
+          git push --force origin main:gh-pages

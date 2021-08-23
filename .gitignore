@@ -3,4 +3,3 @@ bundle
 *.lock
 package-lock.json
 .jekyll-cache
-assets/css/styles.css
