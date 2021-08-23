@@ -55,7 +55,9 @@ jobs:
           NODE_ENV=production npx tailwindcss -o assets/css/styles.css --minify
 
       - run: |
+          ls /var/lib/gems/2.7.0/cache
           sudo gem install bundler --verbose
+          bundle install
           bundle exec jekyll build
 
       - run: |
