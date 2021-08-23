@@ -2,31 +2,35 @@ clean:
 	rm -rf node_modules
 	rm -rf _site
 	rm -rf vendor
+	rm -rf .jekyll-cache
 	rm *.lock package-lock.json
+	rm -f assets/css/styles.css
 
 
 node_modules:
 	npm install
 
 
-setup: node_modules
+vendor/bundle:
 	bundle
+
+
+setup: node_modules vendor/bundle
 
 
 watch:
 	npx tailwindcss -o assets/css/styles.css --watch
 
 
-server:
-	bundle exec jekyll serve
-
-
 build-tailwind: node_modules
 	NODE_ENV=production npx tailwindcss -o assets/css/styles.css --minify
 
 
-build-jekyll:
-	bundle
+server: vendor/bundle
+	bundle exec jekyll serve
+
+
+build-jekyll: vendor/bundle
 	bundle exec jekyll build
 
 

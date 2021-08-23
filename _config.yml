@@ -1,7 +1,7 @@
 title: 'Jekyll and Tailwind CSS'
 theme:
 permalink: pretty
-#repository: andreif/github-pages-jekyll-tailwind
+repository: andreif/github-pages-jekyll-tailwind
 
 exclude:
   - README.md
