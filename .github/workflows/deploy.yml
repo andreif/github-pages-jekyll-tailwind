@@ -38,15 +38,27 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
 
-      - run: gem list
-      - run: gem env
-      - run: sudo gem install bundler
-      - run: make build-tailwind
-      - run: make build-jekyll
+      - name: Cache ruby gems
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-ruby-gems-2
+        with:
+          path: ~/.gem/ruby/2.7.0
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/Gemfile') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+      - run: NODE_ENV=production npx tailwindcss -o assets/css/styles.css --minify
+      - run: |
+          export GEM_HOME=~/.gem/ruby/2.7.0
+          mkdir -p $GEM_HOME
+          gem install bundler
+          bundle exec jekyll build
       - run: |
           git add .
           git reset --hard
-      - run: |
           git fetch
           git switch gh-pages
       - run: |
@@ -62,10 +74,3 @@ jobs:
           git config --global user.email 'github.actions@users.noreply.github.com'
           git commit -am "Deploy"
           git push
-
-#      - name: Upload to GitHub Pages
-#        uses: JamesIves/github-pages-deploy-action@releases/v3
-#        with:
-#            ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-#            BRANCH: gh-pages
-##            FOLDER: site
