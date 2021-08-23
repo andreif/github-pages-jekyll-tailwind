@@ -35,7 +35,7 @@ jobs:
       - run: |
           mkdir -p $(dirname $DEPLOY_KEY_PATH)
           echo "${{ secrets.DEPLOY_KEY }}" > $DEPLOY_KEY_PATH
-          [ -s $DEPLOY_KEY_PATH ] && exit 1
+          [ -s $DEPLOY_KEY_PATH ] || exit 1
           chmod 600 $DEPLOY_KEY_PATH
         env:
           DEPLOY_KEY_PATH: ~/.ssh/id_ed25519
