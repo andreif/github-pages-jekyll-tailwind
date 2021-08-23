@@ -39,6 +39,6 @@ jobs:
           git remote set-url origin git@github.com:andreif/github-pages-jekyll-tailwind.git
           git config --global user.name 'Github Actions'
           git config --global user.email 'github.actions@users.noreply.github.com'
-          git add assets/css/styles.css
+          git add -f assets/css/styles.css
           git commit -m "Deploy"
           git push --force origin main:gh-pages
