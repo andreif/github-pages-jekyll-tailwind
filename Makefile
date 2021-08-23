@@ -18,12 +18,12 @@ vendor/bundle:
 setup: node_modules vendor/bundle
 
 
-watch:
-	npx tailwindcss -o assets/css/styles.css --watch
+watch-tailwind: node_modules
+	npx tailwindcss -i assets/css/tailwind.css -o assets/css/styles.css --watch
 
 
 build-tailwind: node_modules
-	NODE_ENV=production npx tailwindcss -o assets/css/styles.css --minify
+	NODE_ENV=production npx tailwindcss -i assets/css/tailwind.css -o assets/css/styles.css --minify
 
 
 server: vendor/bundle
