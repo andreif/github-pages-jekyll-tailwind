@@ -41,9 +41,9 @@ jobs:
       - name: Cache ruby gems
         uses: actions/cache@v2
         env:
-          cache-name: cache-ruby-gems-2
+          cache-name: cache-ruby-gems-3
         with:
-          path: ~/.gem/ruby/2.7.0
+          path: /var/lib/gems/2.7.0/cache
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/Gemfile') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
