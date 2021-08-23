@@ -51,7 +51,7 @@ jobs:
       - run: |
           export GEM_HOME=~/.gem/ruby/2.7.0
           mkdir -p $GEM_HOME
-          gem install bundler --verbose
+          [ -f $GEM_HOME/bin/bundle ] || gem install bundler --verbose
           $GEM_HOME/bin/bundle install
           $GEM_HOME/bin/bundle exec jekyll build
 
