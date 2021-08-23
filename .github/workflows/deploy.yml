@@ -38,6 +38,7 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
 
+      - run: gem install bundler
       - run: make build-tailwind
       - run: make build-jekyll
       - run: |
