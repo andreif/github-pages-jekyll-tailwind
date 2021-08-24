@@ -28,5 +28,3 @@
 
 3. Restart the failed workflow run to deploy `gh-pages` branch 
    https://github.com/andreif/example/actions/workflows/deploy.yml
-
-4. Enable GitHub Pages for `gh-pages` branch https://github.com/andreif/example/settings/pages
